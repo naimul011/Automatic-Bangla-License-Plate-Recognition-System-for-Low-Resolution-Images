@@ -57,7 +57,7 @@ Upon downloading, you will get four directories:
 }
 
 ## Training
-Follow the notebook: Train_final.ipynb
+Follow the notebook: Train_final.ipynb.
 To train the super-resolution model, follow these steps:
 1. Load the training dataset by running the following code:
 ```python
