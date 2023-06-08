@@ -13,8 +13,7 @@ https://github.com/zzxvictor/License-super-resolution
 * Dataset
 * Setup
 * Training
-* Generative Adversarial Network Training
-* Model Saving
+* 
 
 ## Introduction
 The goal of this project is to improve the resolution of Bangla license plate images using a super-resolution model. The model is trained using a combination of mean absolute error (MAE) loss and VGG loss. The training process involves pretraining the generator model and then training the generative adversarial network (GAN).
@@ -73,6 +72,29 @@ trainData = DataLoader().load(train, batchSize=16)
 valData = DataLoader().load(val, batchSize=64)
 
 ```
+2. Define the generator, discriminator, and extractor models:
+```python
+discriminator = Discriminator()
+extractor = buildExtractor()
+generator = RRDBNet(blockNum=10)
 
+```
+3. Pretrain the generator model:
+```python
+def contentLoss(y_true, y_pred):
+    featurePred = extractor(y_pred)
+    feature = extractor(y_true)
+    mae = tf.reduce_mean(tfk.losses.mae(y_true, y_pred))
+    return 0.1*tf.reduce_mean(tfk.losses.mse(featurePred, feature)) + mae
 
+optimizer = tfk.optimizers.Adam(learning_rate=1e-3)
+generator.compile(loss=contentLoss, optimizer=optimizer, metrics=[psnr, ssim])
+history = generator.fit(x=trainData, validation_data=valData, epochs=5, steps_per_epoch=300, validation_steps=100)
+```
+4. Train the generative adversarial network (GAN):
+```python
+PARAMS = dict(lrGenerator=1e-4, lrDiscriminator=1e-4, epochs=2, stepsPerEpoch=500, valSteps=100)
+game = MinMaxGame(generator, discriminator, extractor)
+log, valLog = game.train(trainData, valData, PARAMS)
+```
 
