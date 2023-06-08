@@ -57,6 +57,22 @@ Upon downloading, you will get four directories:
   url          = {https://doi.org/10.5281/zenodo.7110401}
 }
 
+## Training
+To train the super-resolution model, follow these steps:
+1. Load the training dataset by running the following code:
+```python
+import numpy as np
+import glob
+
+PATH = '/content/drive/MyDrive/Processed_data/training_data'
+files = glob.glob(PATH + '/*.png') * 3  # data augmentation, same image with different brightness and contrast
+np.random.shuffle(files)
+train, val = files[:int(len(files)*0.8)], files[int(len(files)*0.8):]
+loader = DataLoader()
+trainData = DataLoader().load(train, batchSize=16)
+valData = DataLoader().load(val, batchSize=64)
+
+```
 
 
 
