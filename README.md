@@ -122,7 +122,7 @@ You can install the required dependencies by running the following commands:
 ```python
 !pip install easyocr
 !pip install imutils
-
+```
 ### Result
 ![alt text](inference.png)
 
