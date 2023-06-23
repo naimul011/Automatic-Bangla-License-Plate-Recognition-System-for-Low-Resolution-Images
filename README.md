@@ -16,6 +16,7 @@ https://github.com/zzxvictor/License-super-resolution
 * 
 
 ## Introduction
+((Follow the Inference notebook))
 The goal of this project is to improve the resolution of Bangla license plate images using a super-resolution model. The model is trained using a combination of mean absolute error (MAE) loss and VGG loss. The training process involves pretraining the generator model and then training the generative adversarial network (GAN).
 
 ## Dataset 
@@ -121,5 +122,9 @@ You can install the required dependencies by running the following commands:
 ```python
 !pip install easyocr
 !pip install imutils
+
+### Result
+
+
 
 
