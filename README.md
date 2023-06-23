@@ -124,7 +124,7 @@ You can install the required dependencies by running the following commands:
 !pip install imutils
 ```
 ### Result
-![alt text](inference.png)
+![alt text](inference.PNG)
 
 
 
