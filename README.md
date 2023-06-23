@@ -99,3 +99,27 @@ game = MinMaxGame(generator, discriminator, extractor)
 log, valLog = game.train(trainData, valData, PARAMS)
 ```
 
+## Inference
+
+This notebook performs text recognition and localization using EasyOCR library. It reads an image, applies various image processing techniques to localize the text, and uses EasyOCR to extract the text from the localized region. The recognized text is then rendered back onto the image.
+
+## Dependencies
+
+The following dependencies need to be installed before running the notebook:
+
+- `easyocr`
+- `imutils`
+- `cv2` (OpenCV)
+- `matplotlib`
+- `numpy`
+- `tensorflow`
+- `keras`
+- `google.colab`
+
+You can install the required dependencies by running the following commands:
+
+```python
+!pip install easyocr
+!pip install imutils
+
+
